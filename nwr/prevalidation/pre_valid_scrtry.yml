@@ -1,0 +1,13 @@
+---
+- hosts: abcz
+  become: true
+  become_user: root
+  tasks:
+    - name: Trail "Executing Pre-validation Scripts"
+      script: /home/sverma/ansible/nwr/prevalidation/prevalid_scr.sh
+      register: output
+    - name: Trial "Fetching the Pre-Validation Report"
+      fetch:
+       src: /tmp/details.txt
+       dest: /home/sverma/ansible/nwr/prevalidation/details/prevalidation-{{ inventory_hostname }}
+       flat: yes

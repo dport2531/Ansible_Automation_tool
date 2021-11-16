@@ -1,0 +1,12 @@
+---
+- hosts: myenv
+  tasks:
+    - name: Transfer the script
+      copy: src=/tmp/Sun114046 dest=/tmp/Sun114046 mode=0777
+      register: result_copy
+
+
+    - name: Execute the script and verification script
+      command: sh /tmp/Sun114046
+      register: result_run
+    - debug: var=result_run.stdout_lines
